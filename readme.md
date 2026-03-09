@@ -62,7 +62,7 @@ Then, to add the [@microsoft/power-apps-vite](https://www.npmjs.com/package/@mic
 npm install @microsoft/power-apps-vite
 ```
 
-Finally, to add the Power Apps Vite plugin, open your project's `vite.config.ts` file (it should be there) and replace it with the following:
+Finally, to add the Power Apps Vite plugin, open your project's `vite.config.ts` file (it should be there) and replace the contents it with the following:
 
 ```
 import { defineConfig } from "vite";
