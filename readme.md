@@ -1,4 +1,6 @@
-# Power Apps Code Apps: A "Quick and Dirty" How To
+# Power Apps Code Apps: A "Quick and Dirty" How-To Guide
+![opening](https://i.imgur.com/dCqWdsS.png)
+
 [Power Apps Code Apps](https://learn.microsoft.com/en-us/power-apps/developer/code-apps/overview) let you bring custom React applications into Power Platform, hosting them natively within an ecosystem you already know and trust. Build fully bespoke UIs in Visual Studio Code using the tools and frameworks you love, then deploy directly into Power Platform, inheriting all the enterprise-grade security, governance, and compliance that comes standard with Power Apps.
 
 This is a quick-and-dirty guide to get you up and running quickly!
