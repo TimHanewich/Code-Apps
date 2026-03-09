@@ -6,8 +6,8 @@ This is a quick-and-dirty guide to get you up and running quickly!
 *Note: Throughout this walk-through, Copilot CLI is used to scaffold the React app itself. It would likely handle the prepping, building, and deploying to Power Platform just as capably, but in the interest of transparency, I've listed out each individual command along with what it does, so you get a real feel for what's happening under the hood rather than treating it as a black box.*
 
 ## Setup
-Before you begin, install the following:
-- [Visual Studio Code](https://code.visualstudio.com/)
+Before you begin, you will need to install the following on your machine:
+- [Visual Studio Code](https://code.visualstudio.com/) or any other code editor of your choice
 - [NodeJS](https://nodejs.org/)
 - [Power Platform PAC CLI](https://learn.microsoft.com/en-us/power-platform/developer/cli/introduction)
 - [GitHub Copilot CLI](https://github.com/features/copilot/cli) - *if you're like me and don't know React, you can use this to vibe-code anything!*
@@ -18,7 +18,7 @@ In your terminal, navigate (`cd`) to a folder and run `copilot` to pull up the C
 Once Copilot boots, type in a prompt like the following:
 
 ```
-Make me a typescript-based React app that has a button and upon the button being clicked show a random fact about Formula 1.
+Make me a typescript-based React app that has a button and upon the button being clicked shows a random fact about Formula 1.
 ```
 
 ![prompt](https://i.imgur.com/COfb8o6.png)
