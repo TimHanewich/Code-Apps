@@ -1,4 +1,9 @@
 # Power Apps Code Apps: A "Quick and Dirty" How To
+[Power Apps Code Apps](https://learn.microsoft.com/en-us/power-apps/developer/code-apps/overview) let you bring your own custom React applications into Power Platform, hosting them natively within the ecosystem you already know and trust. This means you can build fully bespoke UIs in Visual Studio Code using the tools and frameworks you love, then deploy them directly into Power Platform, inheriting all the enterprise-grade security, governance, and compliance that comes standard with Power Apps.
+
+This is a "quick and dirty" guide to get you up and running quickly.
+
+*Note: in the walk-through below, Copilot CLI is used to build out the React app itself. The Copilot CLI would likely also do an excellent job in handling the actual prepping, building, and pushing of the App to Power Platform. However, for transparencys sake, I listed out the individual commands needed to be executed as well as what happens from each of them along the way so you can get a better feel of what is going on so it doesnt seem as much of a black box!*
 
 ## Setup
 Before you begin, install the following:
