@@ -143,3 +143,5 @@ Press the play button to play in Power Apps.
 ![playing](https://i.imgur.com/RaYzw7i.png)
 
 Happy vibe coding of Power Apps Code Apps 😊
+
+*Written by [Tim Hanewich, Sr. AI Business Solutions Engineer at Microsoft](https://github.com/TimHanewich).*
