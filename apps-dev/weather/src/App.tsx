@@ -46,7 +46,7 @@ function App() {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1 className="dashboard-title">🏃 RunCast</h1>
+        <h1 className="dashboard-title">⛅ Weather</h1>
         <LocationSearch onSelect={setLocation} />
       </header>
 
