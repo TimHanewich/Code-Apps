@@ -46,6 +46,38 @@ export interface CurrentWeatherData {
   wind_speed_10m: number;
 }
 
+export interface HourlyUnits {
+  time: string;
+  temperature_2m: string;
+  apparent_temperature: string;
+  precipitation_probability: string;
+  precipitation: string;
+  rain: string;
+  showers: string;
+  weather_code: string;
+  wind_speed_10m: string;
+  wind_gusts_10m: string;
+  wind_direction_10m: string;
+  relative_humidity_2m: string;
+  cloud_cover: string;
+}
+
+export interface HourlyWeather {
+  time: string[];
+  temperature_2m: number[];
+  apparent_temperature: number[];
+  precipitation_probability: number[];
+  precipitation: number[];
+  rain: number[];
+  showers: number[];
+  weather_code: number[];
+  wind_speed_10m: number[];
+  wind_gusts_10m: number[];
+  wind_direction_10m: number[];
+  relative_humidity_2m: number[];
+  cloud_cover: number[];
+}
+
 export interface DailyUnits {
   time: string;
   weather_code: string;
@@ -108,8 +140,29 @@ export interface WeatherResponse {
   elevation: number;
   current_units: CurrentUnits;
   current: CurrentWeatherData;
+  hourly_units: HourlyUnits;
+  hourly: HourlyWeather;
   daily_units: DailyUnits;
   daily: DailyWeather;
+}
+
+export interface HourRunScore {
+  time: string;
+  hour: number;
+  total: number;
+  precipScore: number;
+  tempScore: number;
+  windScore: number;
+  gustScore: number;
+  label: string;
+  color: string;
+  temperature: number;
+  apparentTemperature: number;
+  precipProbability: number;
+  rain: number;
+  windSpeed: number;
+  windGusts: number;
+  weatherCode: number;
 }
 
 export interface GeocodingResult {

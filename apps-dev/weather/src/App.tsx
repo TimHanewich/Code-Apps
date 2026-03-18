@@ -3,8 +3,10 @@ import { fetchWeather } from './api';
 import type { WeatherResponse, WeatherLocation } from './types';
 import LocationSearch from './components/LocationSearch';
 import CurrentWeather from './components/CurrentWeather';
+import BestTimeToRun from './components/BestTimeToRun';
 import DailyForecast from './components/DailyForecast';
 import WeatherDetails from './components/WeatherDetails';
+import HourlyRunForecast from './components/HourlyRunForecast';
 import './App.css';
 
 const DEFAULT_LOCATION: WeatherLocation = {
@@ -45,7 +47,7 @@ function App() {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1 className="dashboard-title">⛅ Weather</h1>
+        <h1 className="dashboard-title">🏃 RunCast</h1>
         <LocationSearch onSelect={setLocation} />
       </header>
 
@@ -71,8 +73,10 @@ function App() {
             daily={weather.daily}
             locationName={locationLabel}
           />
+          <BestTimeToRun hourly={weather.hourly} daily={weather.daily} />
           <DailyForecast daily={weather.daily} />
           <WeatherDetails daily={weather.daily} />
+          <HourlyRunForecast hourly={weather.hourly} daily={weather.daily} />
           <footer className="dashboard-footer">
             <p>
               Data from{' '}

@@ -417,6 +417,199 @@
   margin: 0;
 }
 
+/* ===== Best Time to Run ===== */
+
+.best-time-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  padding: 24px;
+}
+
+.best-time-today {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 0;
+}
+
+.score-badge-lg {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  flex-shrink: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.best-time-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.best-time-label {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.best-time-hour {
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.best-time-conditions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text);
+  margin-left: auto;
+}
+
+.best-time-tomorrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--section-border);
+  margin-top: 4px;
+}
+
+.score-badge-sm {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.tomorrow-text {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ===== Hourly Run Forecast ===== */
+
+.hourly-run-forecast {
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  padding: 24px;
+}
+
+.hour-rows-header {
+  display: grid;
+  grid-template-columns: 60px 1fr 32px 30px 48px 44px 44px 52px;
+  gap: 8px;
+  padding: 0 4px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--section-border);
+}
+
+.hour-bar-label {
+  text-align: left;
+}
+
+.hour-score-label {
+  text-align: center;
+}
+
+.run-day-section {
+  margin-top: 16px;
+}
+
+.run-day-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 0 0 8px;
+}
+
+.hour-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hour-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 32px 30px 48px 44px 44px 52px;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 4px;
+  border-radius: 6px;
+  font-size: 13px;
+  transition: background 0.15s;
+}
+
+.hour-row:hover {
+  background: var(--accent-light);
+}
+
+.hour-time {
+  font-weight: 600;
+  color: var(--text-h);
+  font-size: 13px;
+}
+
+.hour-bar-track {
+  height: 10px;
+  background: var(--section-border);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.hour-bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+.hour-score {
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+}
+
+.hour-icon {
+  text-align: center;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.hour-temp {
+  text-align: center;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.hour-wind,
+.hour-gust,
+.hour-rain {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
 /* ===== Responsive ===== */
 
 @media (max-width: 768px) {
@@ -463,5 +656,34 @@
 
   .details-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Best Time - stack vertically */
+  .best-time-today {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .best-time-conditions {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  /* Hourly rows - compact for mobile */
+  .hour-rows-header,
+  .hour-row {
+    grid-template-columns: 52px 1fr 28px 24px 40px 40px;
+    gap: 4px;
+  }
+
+  .hour-gust,
+  .hour-rain {
+    display: none;
+  }
+
+  .hour-rows-header .hour-gust,
+  .hour-rows-header .hour-rain {
+    display: none;
   }
 }

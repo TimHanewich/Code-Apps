@@ -34,6 +34,20 @@ export async function fetchWeather(
       'wind_gusts_10m_max',
       'wind_speed_10m_max',
     ].join(','),
+    hourly: [
+      'temperature_2m',
+      'apparent_temperature',
+      'precipitation_probability',
+      'precipitation',
+      'rain',
+      'showers',
+      'weather_code',
+      'wind_speed_10m',
+      'wind_gusts_10m',
+      'wind_direction_10m',
+      'relative_humidity_2m',
+      'cloud_cover',
+    ].join(','),
     current: [
       'temperature_2m',
       'relative_humidity_2m',
@@ -55,6 +69,7 @@ export async function fetchWeather(
     wind_speed_unit: 'mph',
     temperature_unit: 'fahrenheit',
     precipitation_unit: 'inch',
+    forecast_days: '2',
   });
 
   const res = await fetch(`${WEATHER_BASE}?${params}`);
