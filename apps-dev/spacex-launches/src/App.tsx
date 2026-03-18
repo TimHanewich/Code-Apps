@@ -1,121 +1,167 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState, useMemo } from "react";
+import { useLaunches } from "./hooks/useLaunches";
+import LaunchCard from "./components/LaunchCard";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { launches, rockets, launchpads, loading, error } = useLaunches();
+  const [search, setSearch] = useState("");
+  const [rocketFilter, setRocketFilter] = useState("all");
+
+  const uniqueRockets = useMemo(() => {
+    const ids = new Set(launches.map((l) => l.rocket));
+    return [...ids]
+      .map((id) => rockets.get(id))
+      .filter(Boolean)
+      .sort((a, b) => a!.name.localeCompare(b!.name));
+  }, [launches, rockets]);
+
+  const filtered = useMemo(() => {
+    return launches.filter((l) => {
+      const matchesSearch = l.name
+        .toLowerCase()
+        .includes(search.toLowerCase());
+      const matchesRocket =
+        rocketFilter === "all" || l.rocket === rocketFilter;
+      return matchesSearch && matchesRocket;
+    });
+  }, [launches, search, rocketFilter]);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="app">
+      <header className="dashboard-header">
+        <div className="header-content">
+          <div className="logo-block">
+            <svg className="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+            </svg>
+            <div>
+              <h1>SpaceX Launch Dashboard</h1>
+              <p className="subtitle">Upcoming missions tracker</p>
+            </div>
+          </div>
+          {!loading && !error && (
+            <div className="stats">
+              <div className="stat">
+                <span className="stat-value">{launches.length}</span>
+                <span className="stat-label">Upcoming</span>
+              </div>
+              <div className="stat">
+                <span className="stat-value">
+                  {new Set(launches.map((l) => l.rocket)).size}
+                </span>
+                <span className="stat-label">Vehicles</span>
+              </div>
+              <div className="stat">
+                <span className="stat-value">
+                  {new Set(launches.map((l) => l.launchpad)).size}
+                </span>
+                <span className="stat-label">Launchpads</span>
+              </div>
+            </div>
+          )}
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      </header>
 
-      <div className="ticks"></div>
+      <main className="dashboard-main">
+        {loading && (
+          <div className="loading">
+            <div className="spinner" />
+            <p>Loading launch manifest…</p>
+          </div>
+        )}
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        {error && (
+          <div className="error">
+            <p>⚠️ {error}</p>
+            <button onClick={() => window.location.reload()}>Retry</button>
+          </div>
+        )}
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        {!loading && !error && (
+          <>
+            <div className="controls">
+              <div className="search-wrapper">
+                <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="M21 21L16.65 16.65" />
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Search missions…"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="search-input"
+                />
+              </div>
+              <select
+                value={rocketFilter}
+                onChange={(e) => setRocketFilter(e.target.value)}
+                className="filter-select"
+              >
+                <option value="all">All Vehicles</option>
+                {uniqueRockets.map(
+                  (r) =>
+                    r && (
+                      <option key={r.id} value={r.id}>
+                        {r.name}
+                      </option>
+                    )
+                )}
+              </select>
+            </div>
+
+            {filtered.length === 0 ? (
+              <div className="empty">
+                <p>No launches match your filters.</p>
+              </div>
+            ) : (
+              <>
+                {/* Featured next launch */}
+                <section className="next-launch-section">
+                  <h2 className="section-title">Next Launch</h2>
+                  <LaunchCard
+                    launch={filtered[0]}
+                    rocket={rockets.get(filtered[0].rocket)}
+                    launchpad={launchpads.get(filtered[0].launchpad)}
+                    featured
+                  />
+                </section>
+
+                {filtered.length > 1 && (
+                  <section className="all-launches-section">
+                    <h2 className="section-title">
+                      All Upcoming ({filtered.length - 1} more)
+                    </h2>
+                    <div className="launch-grid">
+                      {filtered.slice(1).map((launch) => (
+                        <LaunchCard
+                          key={launch.id}
+                          launch={launch}
+                          rocket={rockets.get(launch.rocket)}
+                          launchpad={launchpads.get(launch.launchpad)}
+                        />
+                      ))}
+                    </div>
+                  </section>
+                )}
+              </>
+            )}
+          </>
+        )}
+      </main>
+
+      <footer className="dashboard-footer">
+        <p>
+          Data from{" "}
+          <a href="https://github.com/r-spacex/SpaceX-API" target="_blank" rel="noopener noreferrer">
+            SpaceX-API
+          </a>{" "}
+          · Built with React + Vite
+        </p>
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;
