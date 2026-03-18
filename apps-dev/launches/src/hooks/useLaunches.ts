@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import type { Launch, LaunchResponse } from "../types";
 
-const API_URL = "https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=12&mode=list";
+const API_URL = "https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=12";
 
 interface UseLaunchesResult {
   launches: Launch[];
