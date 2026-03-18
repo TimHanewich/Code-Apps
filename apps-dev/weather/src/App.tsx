@@ -3,7 +3,6 @@ import { fetchWeather } from './api';
 import type { WeatherResponse, WeatherLocation } from './types';
 import LocationSearch from './components/LocationSearch';
 import CurrentWeather from './components/CurrentWeather';
-import BestTimeToRun from './components/BestTimeToRun';
 import DailyForecast from './components/DailyForecast';
 import WeatherDetails from './components/WeatherDetails';
 import HourlyRunForecast from './components/HourlyRunForecast';
@@ -73,7 +72,6 @@ function App() {
             daily={weather.daily}
             locationName={locationLabel}
           />
-          <BestTimeToRun hourly={weather.hourly} daily={weather.daily} />
           <DailyForecast daily={weather.daily} />
           <WeatherDetails daily={weather.daily} />
           <HourlyRunForecast hourly={weather.hourly} daily={weather.daily} />
