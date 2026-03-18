@@ -69,7 +69,6 @@ export async function fetchWeather(
     wind_speed_unit: 'mph',
     temperature_unit: 'fahrenheit',
     precipitation_unit: 'inch',
-    forecast_days: '2',
   });
 
   const res = await fetch(`${WEATHER_BASE}?${params}`);
