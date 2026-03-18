@@ -31,7 +31,7 @@ function HourRow({ score }: { score: HourRunScore }) {
       <span className="hour-icon">{weather.icon}</span>
       <span className="hour-temp">{Math.round(score.temperature)}°</span>
       <span className="hour-wind">💨 {Math.round(score.windSpeed)}</span>
-      <span className="hour-gust">突 {Math.round(score.windGusts)}</span>
+      <span className="hour-gust">🌬️ {Math.round(score.windGusts)}</span>
       <span className="hour-rain">🌧️ {score.precipProbability}%</span>
     </div>
   );
