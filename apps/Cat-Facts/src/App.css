@@ -1,0 +1,133 @@
+/* --- Navigation --- */
+.app-nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-link {
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-link:hover {
+  background: var(--accent-bg);
+  color: var(--text-h);
+}
+
+.nav-active {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --- Cat Facts Page --- */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  padding: 40px 24px;
+  box-sizing: border-box;
+}
+
+.cat-emoji {
+  font-size: 80px;
+  line-height: 1;
+  margin-bottom: 8px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.subtitle {
+  margin: 0 0 32px;
+  font-size: 18px;
+  color: var(--text);
+}
+
+.fact-card {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 32px;
+  max-width: 520px;
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+  transition: box-shadow 0.3s;
+  box-shadow: var(--shadow);
+}
+
+.fact-text {
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--text-h);
+  margin: 0;
+  animation: fadeIn 0.35s ease-in;
+}
+
+.fact-placeholder {
+  font-size: 18px;
+  color: var(--text);
+  font-style: italic;
+  margin: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fact-button {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  color: #fff;
+  background: var(--accent);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.3s, border-color 0.3s;
+
+  &:hover {
+    transform: scale(1.04);
+    box-shadow: var(--shadow);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+}

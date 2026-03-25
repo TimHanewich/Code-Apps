@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "appId": "13ecb861-825c-472e-9290-ff9174971686",
+  "appDisplayName": "Fun Cat Facts",
+  "region": "prod",
+  "environmentId": "a04c090c-2708-ebe3-bab0-a8db07b4880a",
+  "description": "",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "localAppUrl": "http://localhost:3000",
+  "logoPath": "Default",
+  "connectionReferences": {},
+  "databaseReferences": {
+    "default.cds": {
+      "dataSources": {
+        "contacts": {
+          "entitySetName": "contacts",
+          "logicalName": "contact"
+        }
+      },
+      "environmentVariableName": ""
+    }
+  }
+}
